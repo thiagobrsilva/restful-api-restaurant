@@ -1,0 +1,25 @@
+{
+  "name": "restful-api-restaurant",
+  "version": "1.0.0",
+  "description": "RESTful API Restaurant",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagobrsilva/restful-api-restaurant.git"
+  },
+  "keywords": [
+    "restful-api",
+    "node.js",
+    "rest",
+    "api"
+  ],
+  "author": "Thiago Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiagobrsilva/restful-api-restaurant/issues"
+  },
+  "homepage": "https://github.com/thiagobrsilva/restful-api-restaurant#readme"
+}
