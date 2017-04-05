@@ -4,21 +4,20 @@ var routes = function(Restaurant){
    var restaurantRoute = express.Router();
    var restaurantController = require("..//controllers/restaurantController.js")(Restaurant)
 
-  restaurantRoute.route("/")
-      // inserindo novo registro
+   // verbs without receive the id
+   restaurantRoute.route("/")
+      // post - insert new record
       .post(restaurantController.post)
 
-      // pegando lista completa
+      // get - get all records
       .get(restaurantController.get);
 
-  // middleware - reparar que middleware tem .use e uma rota tem .route
+  // middleware to check if id exists
   restaurantRoute.use("/:id", function(req, res, next){
         Restaurant.findById(req.params.id, function(err, restaurant)
         {
              if (err)
                 res.status(500).send(err);
-             // testando se o registro foi encontrado, se for encontrado redireciona para a próxima função que
-             // atenda os requisitos usando o método next
              else if(restaurant)
              {
                 req.restaurant = restaurant;
@@ -30,13 +29,16 @@ var routes = function(Restaurant){
          });
   })
 
+  //verbs with ID
   restaurantRoute.route("/:id")
+      // get - get specific record
       .get(function(req,res){
           res.json(req.restaurant);
       })
-
+      // put - update a record
       .put(restaurantController.put)
 
+      // delete - delete a record
       .delete(restaurantController.delete);
 
    return restaurantRoute;

@@ -1,14 +1,15 @@
 var restaurantController = function(Restaurant) {
 
+   // insert restaurant
    var post = function(req,res){
       var restaurant = new Restaurant(req.body);
       restaurant.save();
 
-      //status created - retornando objeto para saber o id
+      //return code status 201[created] and the new item
       res.status(201).send(restaurant);
 
    }
-
+   // select restaurant
    var get = function(req,res){
         var query = req.query;
          Restaurant.find(query, function(err, restaurant){
@@ -19,6 +20,7 @@ var restaurantController = function(Restaurant) {
           });
     }
 
+    // delete restaurant
     var del = function(req,res){
        req.restaurant.remove(function(err){
          if (err)
@@ -29,6 +31,7 @@ var restaurantController = function(Restaurant) {
        });
     }
 
+    // update restaurant
     var put = function(req, res){
         req.restaurant.address = req.body.address;
         req.restaurant.borough = req.body.borough;
@@ -46,6 +49,7 @@ var restaurantController = function(Restaurant) {
 
     }
 
+    // return available http verbs
     return {
       post:post,
       put: put,
